@@ -1,0 +1,360 @@
+<!-- Main Page View -->
+@if (currentPage() === 'main') {
+<div class="gradient-bg min-h-screen text-gray-800">
+  <!-- Header -->
+  <header class="bg-white/80 backdrop-blur-lg sticky top-0 z-50 border-b border-gray-200">
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-20">
+        <div class="flex items-center space-x-4">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/fc/Logo_of_the_Movement_of_the_First.svg/640px-Logo_of_the_Movement_of_the_First.svg.png" alt="Логотип Движения Первых" class="h-12 w-auto">
+          <div>
+            <h1 class="font-bold text-lg leading-tight text-gray-900">Движение Первых</h1>
+            <p class="text-sm text-gray-600 leading-tight">{{ schoolName }}</p>
+          </div>
+        </div>
+        <!-- Desktop Nav -->
+        <nav class="hidden md:flex items-center space-x-8">
+          <a href="#about" class="text-gray-600 hover:text-[#ED1C24] transition-colors duration-300">О нас</a>
+          <a href="#projects" class="text-gray-600 hover:text-[#ED1C24] transition-colors duration-300">Проекты</a>
+          <a href="#news" class="text-gray-600 hover:text-[#ED1C24] transition-colors duration-300">Новости</a>
+          <a href="#achievements" class="text-gray-600 hover:text-[#ED1C24] transition-colors duration-300">Достижения</a>
+          <a href="#gallery" class="text-gray-600 hover:text-[#ED1C24] transition-colors duration-300">Фото</a>
+          <a href="#join" class="text-gray-600 hover:text-[#ED1C24] transition-colors duration-300">Как вступить</a>
+        </nav>
+        <!-- Mobile Menu Button -->
+        <div class="md:hidden">
+            <button (click)="toggleMenu()" type="button" class="inline-flex items-center justify-center p-2 rounded-md text-gray-700 hover:text-[#ED1C24] hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-[#ED1C24]" aria-controls="mobile-menu" aria-expanded="false">
+                <span class="sr-only">Открыть главное меню</span>
+                @if (isMenuOpen()) {
+                <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                </svg>
+                } @else {
+                <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                </svg>
+                }
+            </button>
+        </div>
+      </div>
+    </div>
+    <!-- Mobile menu, show/hide based on menu state. -->
+    @if (isMenuOpen()) {
+    <div class="md:hidden" id="mobile-menu">
+        <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3 text-center">
+            <a (click)="toggleMenu()" href="#about" class="text-gray-600 hover:bg-red-50 hover:text-[#ED1C24] block px-3 py-2 rounded-md text-base font-medium">О нас</a>
+            <a (click)="toggleMenu()" href="#projects" class="text-gray-600 hover:bg-red-50 hover:text-[#ED1C24] block px-3 py-2 rounded-md text-base font-medium">Проекты</a>
+            <a (click)="toggleMenu()" href="#news" class="text-gray-600 hover:bg-red-50 hover:text-[#ED1C24] block px-3 py-2 rounded-md text-base font-medium">Новости</a>
+            <a (click)="toggleMenu()" href="#achievements" class="text-gray-600 hover:bg-red-50 hover:text-[#ED1C24] block px-3 py-2 rounded-md text-base font-medium">Достижения</a>
+            <a (click)="toggleMenu()" href="#gallery" class="text-gray-600 hover:bg-red-50 hover:text-[#ED1C24] block px-3 py-2 rounded-md text-base font-medium">Фото</a>
+            <a (click)="toggleMenu()" href="#join" class="text-gray-600 hover:bg-red-50 hover:text-[#ED1C24] block px-3 py-2 rounded-md text-base font-medium">Как вступить</a>
+        </div>
+    </div>
+    }
+  </header>
+
+  <main>
+    <!-- Marquee Section -->
+    <div (click)="showVotingPage()" class="text-white py-3 overflow-hidden select-none marquee cursor-pointer" style="background-color: #E92B2D;">
+      <div class="marquee-content">
+        <span class="font-semibold mx-8 text-lg">Выборы Председателя Совета Первых! Нажми, чтобы проголосовать! ✨</span>
+        <span class="font-semibold mx-8 text-lg">Выборы Председателя Совета Первых! Нажми, чтобы проголосовать! ✨</span>
+        <span class="font-semibold mx-8 text-lg">Выборы Председателя Совета Первых! Нажми, чтобы проголосовать! ✨</span>
+        <span class="font-semibold mx-8 text-lg">Выборы Председателя Совета Первых! Нажми, чтобы проголосовать! ✨</span>
+      </div>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="relative pt-16 pb-20 md:pt-20 md:pb-24 overflow-hidden">
+      <div class="container mx-auto px-4 sm:px-6 lg:px-8 text-center">
+
+        <h3 class="team-name-animate text-2xl md:text-3xl font-bold text-gray-800 mb-2">
+          <span class="team-name-underline">{{ teamName }} ✨</span>
+        </h3>
+        <h2 class="hero-title text-3xl sm:text-4xl md:text-6xl font-extrabold text-gray-900 leading-tight">
+          Быть <span class="highlight-container"><span class="brand-red">с Россией</span></span>, быть <span class="highlight-container"><span class="brand-red">человеком</span></span>, быть <span class="highlight-container"><span class="brand-red">вместе</span></span><br>
+          быть <span class="highlight-container"><span class="brand-red">в движении</span></span>, быть <span class="highlight-container"><span class="brand-red">первыми</span></span>.
+        </h2>
+        <p class="mt-8 max-w-3xl mx-auto text-base sm:text-lg text-gray-600 card-animate" style="animation-delay: 1.4s;">
+          Мы — первичное отделение «Движения Первых» в 71-й школе. Мы объединяем самых активных, творческих и неравнодушных ребят, чтобы вместе делать нашу школу, город и страну лучше!
+        </p>
+        <div class="mt-10 card-animate" style="animation-delay: 1.6s;">
+          <a href="https://id.pervye.ru/registration" target="_blank" rel="noopener noreferrer" class="bg-[#ED1C24] text-white font-bold py-3 px-8 rounded-full text-lg hover:bg-red-700 transition-colors duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1">
+            Присоединяйся к нам!
+          </a>
+        </div>
+        <!-- Election Banner -->
+        <div (click)="showVotingPage()" class="card-animate mt-12 group transition-all duration-300 cursor-pointer transform hover:-translate-y-1">
+          <img src="https://i.postimg.cc/3NgSVY5r/Group-299.png" alt="Выборы Председателя Совета Первых" class="w-full h-auto block drop-shadow-lg group-hover:drop-shadow-xl transition-shadow duration-300">
+        </div>
+      </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="py-12 md:py-16 bg-white">
+      <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-12">
+          <h3 class="section-title text-3xl sm:text-4xl font-bold tracking-tight text-gray-900">Присоединяйся к нам!</h3>
+          <p class="mt-4 max-w-2xl mx-auto text-base sm:text-lg text-gray-600">Сейчас у тебя есть уникальная возможность стать частью нашей команды! Мы ждём самых активных, творческих и неравнодушных ребят.</p>
+        </div>
+        <div class="flex justify-center">
+          @for (project of projects(); track project.title) {
+          <div class="card-animate group relative overflow-hidden rounded-xl shadow-lg transform hover:-translate-y-2 transition-transform duration-300 w-full max-w-lg">
+            <img [src]="project.imageUrl" [alt]="project.title" class="w-full h-auto object-cover group-hover:scale-105 transition-transform duration-300" loading="lazy">
+            <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent"></div>
+            <div class="absolute bottom-0 left-0 p-6 text-white">
+              <h4 class="text-2xl font-bold">{{ project.title }}</h4>
+              <p class="mt-2 text-base opacity-90 project-card-description">{{ project.description }}</p>
+            </div>
+          </div>
+          }
+        </div>
+      </div>
+    </section>
+
+    <!-- News Section -->
+    <section id="news" class="py-12 md:py-16 bg-white">
+      <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-12">
+          <h3 class="section-title text-3xl sm:text-4xl font-bold tracking-tight text-gray-900">Последние новости</h3>
+        </div>
+        <div class="max-w-3xl mx-auto">
+          @for (item of news(); track item.title; let i = $index) {
+          <div (click)="selectNews(item)" class="card-animate mb-8 cursor-pointer group" [style.animation-delay]="i * 100 + 'ms'">
+            <div class="p-6 bg-gray-50 rounded-xl shadow-sm hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1">
+              <p class="text-sm text-[#ED1C24] font-semibold mb-1">{{ item.date }}</p>
+              <h4 class="text-xl font-bold text-gray-900 mb-2 group-hover:text-[#ED1C24] transition-colors">{{ item.title }}</h4>
+              <p class="text-gray-600">{{ item.content }}</p>
+            </div>
+          </div>
+          }
+        </div>
+      </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-12 md:py-16">
+      <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-12">
+          <h3 class="section-title text-3xl sm:text-4xl font-bold tracking-tight text-gray-900">Что такое «Движение Первых»?</h3>
+          <p class="mt-4 max-w-2xl mx-auto text-base sm:text-lg text-gray-600">Наше Движение — это сотни уникальных программ воспитания и становления личности, активного и ответственного досуга.</p>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+          @for (value of values(); track value.title; let i = $index) {
+          <div class="card-animate bg-gray-50 p-6 rounded-xl shadow-sm hover:shadow-lg transition-shadow duration-300" [style.animation-delay]="i * 100 + 'ms'">
+            <div class="flex items-center justify-center h-12 w-12 rounded-full bg-[#ED1C24] text-white mb-4">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" [attr.d]="value.icon" />
+              </svg>
+            </div>
+            <h4 class="text-xl font-bold text-gray-900 mb-2">{{ value.title }}</h4>
+            <p class="text-gray-600">{{ value.description }}</p>
+          </div>
+          }
+        </div>
+      </div>
+    </section>
+
+    <!-- Achievements Section -->
+    <section id="achievements" class="py-12 md:py-16 bg-white">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 items-stretch gap-8 md:gap-16">
+                <div class="card-animate md:order-1 flex items-center justify-center">
+                    <img src="https://i.postimg.cc/c13PNJ9v/8583bbc1-0ef4-4986-8f71-0d7ab54e0c70-Photoroom.png" alt="Маскот Движения Первых с наградами" class="rounded-2xl w-full max-w-md mx-auto transform transition-transform duration-300 hover:scale-105 hover:-rotate-1">
+                </div>
+                <div class="md:order-2 card-animate flex flex-col" style="animation-delay: 150ms;">
+                    <div class="text-center md:text-left">
+                        <h2 class="text-base font-semibold text-[#ED1C24] tracking-wide uppercase">Наша гордость</h2>
+                        <p class="mt-2 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">Знакомьтесь, наш Чилловый парень!</p>
+                        <div class="mt-4 w-16 h-1 bg-[#ED1C24] rounded-full mx-auto md:mx-0"></div>
+                        <p class="mt-6 text-gray-600 text-lg mb-4">
+                          Его зовут Чилловый парень, и он — душа нашей команды. Всегда на позитиве, он символизирует не только наши победы, но и лёгкое отношение к трудностям. Он напоминает нам, что быть первыми — это не только усердная работа, но и умение получать удовольствие от процесса.
+                        </p>
+                        <p class="text-gray-600 text-lg">
+                          Каждый его трофей — это не просто награда, а история нашей дружбы, командной работы и веры в общее дело. Он — наш талисман на пути к новым вершинам!
+                        </p>
+                    </div>
+                    <div class="mt-auto flex justify-center md:justify-end">
+                        <img src="https://i.postimg.cc/3NWXYW7D/babc9ada-6f31-491c-a21d-3b8edfbf6bf5-Photoroom.png" alt="Чилловый парень сидит" class="w-64 h-auto">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Photo Gallery Section -->
+    @if (photos().length > 0) {
+    <section id="gallery" class="py-12 md:py-16">
+      <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-12">
+          <h3 class="section-title text-3xl sm:text-4xl font-bold tracking-tight text-gray-900">Фотогалерея</h3>
+          <p class="mt-4 max-w-2xl mx-auto text-base sm:text-lg text-gray-600">Яркие моменты из жизни нашего отделения.</p>
+        </div>
+        <div class="grid grid-cols-2 sm:grid-cols-3 gap-4 md:gap-6">
+          @for (photo of photos(); track photo.imageUrl; let i = $index) {
+          <div class="card-animate group rounded-xl shadow-lg overflow-hidden transform hover:-translate-y-1.5 transition-transform duration-300" [style.animation-delay]="i * 100 + 'ms'">
+            <img [src]="photo.imageUrl" [alt]="photo.alt" class="aspect-square w-full object-cover group-hover:scale-110 transition-transform duration-500" loading="lazy">
+          </div>
+          }
+        </div>
+      </div>
+    </section>
+    }
+    
+    <!-- Join Section -->
+    <section id="join" class="py-12 md:py-16">
+      <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="max-w-3xl mx-auto text-center bg-white p-8 md:p-12 rounded-2xl shadow-lg">
+          <h3 class="section-title text-3xl sm:text-4xl font-bold tracking-tight text-gray-900">Как стать частью Движения?</h3>
+          <p class="mt-4 text-base sm:text-lg text-gray-600">
+            Вступить в «Движение Первых» очень просто! Ты можешь сделать это онлайн на официальном сайте или обратиться к руководителю нашего первичного отделения в школе.
+          </p>
+          <div class="mt-8">
+             <a href="https://id.pervye.ru/registration" target="_blank" rel="noopener noreferrer" class="bg-[#ED1C24] text-white font-bold py-3 px-8 rounded-full text-lg hover:bg-red-700 transition-colors duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1 inline-block">
+              Вступить онлайн
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-gray-900 text-white">
+    <div class="container mx-auto py-8 px-4 sm:px-6 lg:px-8 text-center">
+      <p>&copy; {{ currentYear }} {{ schoolName }}. Все права защищены.</p>
+      <p class="text-sm text-gray-400 mt-2">Первичное отделение РДДМ «Движение Первых»</p>
+    </div>
+  </footer>
+</div>
+
+<!-- News Modal -->
+@if (selectedNewsItem(); as item) {
+<div class="fixed inset-0 bg-black/70 z-[100] flex items-center justify-center p-4 news-modal-backdrop" (click)="closeNews()">
+  <div class="bg-white rounded-2xl shadow-2xl w-full max-w-3xl max-h-[90vh] flex flex-col news-modal-content" (click)="$event.stopPropagation()">
+    <!-- Modal Header -->
+    <div class="relative flex-shrink-0">
+        @if (item.imageUrl) {
+        <img [src]="item.imageUrl" alt="" class="w-full h-48 object-cover rounded-t-2xl">
+        <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/60 to-transparent rounded-t-2xl"></div>
+        }
+        <div class="absolute bottom-0 left-0 p-6">
+            <h3 class="text-2xl font-bold text-white shadow-sm">{{ item.title }}</h3>
+            <p class="text-sm text-white/90 mt-1 shadow-sm">{{ item.date }}</p>
+        </div>
+        <button (click)="closeNews()" class="absolute top-4 right-4 bg-black/30 text-white rounded-full p-2 hover:bg-black/50 transition-colors focus:outline-none focus:ring-2 focus:ring-white">
+            <span class="sr-only">Закрыть</span>
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+        </button>
+    </div>
+
+    <!-- Modal Content -->
+    <div class="flex-grow p-6 md:p-8 overflow-y-auto">
+        <div class="prose max-w-none" [innerHTML]="item.fullContent"></div>
+    </div>
+
+    <!-- Conditional Button -->
+    @if (item.id === 'election-announcement') {
+    <div class="flex-shrink-0 p-6 border-t border-gray-200 bg-gray-50 rounded-b-2xl">
+        <button (click)="showVotingPage()" class="w-full bg-[#ED1C24] text-white font-bold py-3 px-8 rounded-full text-lg hover:bg-red-700 transition-colors duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1">
+            Перейти к голосованию
+        </button>
+    </div>
+    }
+  </div>
+</div>
+}
+} @else {
+<!-- Voting Page View -->
+<div class="gradient-bg min-h-screen text-gray-800 flex flex-col">
+  <header class="bg-white/80 backdrop-blur-lg sticky top-0 z-50 border-b border-gray-200">
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-20">
+        <div class="flex items-center space-x-4">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/fc/Logo_of_the_Movement_of_the_First.svg/640px-Logo_of_the_Movement_of_the_First.svg.png" alt="Логотип Движения Первых" class="h-12 w-auto">
+          <div>
+            <h1 class="font-bold text-lg leading-tight text-gray-900">Голосование</h1>
+            <p class="text-sm text-gray-600 leading-tight">{{ schoolName }}</p>
+          </div>
+        </div>
+        <button (click)="showMainPage()" class="bg-gray-200 text-gray-800 font-bold py-2 px-6 rounded-full text-base hover:bg-gray-300 transition-colors duration-300 shadow-md hover:shadow-lg transform hover:-translate-y-1">Назад</button>
+      </div>
+    </div>
+  </header>
+
+  <main class="flex-grow container mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    <!-- Introduction Section -->
+    <section class="mb-12">
+      <div class="bg-white/80 p-8 rounded-2xl shadow-lg">
+        <div class="flex flex-col md:flex-row md:justify-between md:items-start gap-4 mb-4">
+          <h2 class="text-3xl font-bold text-gray-900 flex-grow order-2 md:order-1">Выборы в Совет Первых: Твой голос решает!</h2>
+          <div class="flex-shrink-0 w-full md:w-auto flex justify-center md:justify-start order-1 md:order-2">
+            <img src="https://i.postimg.cc/PqbFS1Zm/transparent-Photoroom.png" alt="Маскот призывает голосовать" class="max-w-[270px] w-full h-auto">
+          </div>
+        </div>
+        <div class="space-y-4 text-gray-700">
+          <p>Выборы Председателя Совета Первых — это важное событие, где каждый из нас может повлиять на будущее Движения в нашей школе. Это ваш шанс выбрать лидера, который будет представлять ваши интереси и воплощать в жизнь самые смелые идеи.</p>
+          <p>Часто кандидаты представляют свои проекты, чтобы мы могли познакомиться с их видением развития Движения поближе. Иногда голосование может проходить в формате «за» или «против» единственного кандидата. Каждый голос имеет значение!</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Candidates Section -->
+    <section class="mb-12">
+      <div class="text-center mb-8">
+        <h3 class="section-title text-3xl sm:text-4xl font-bold tracking-tight text-gray-900">Кандидаты</h3>
+      </div>
+      <div class="flex justify-center items-center">
+        @if (!hasVoted()) {
+          <!-- Voting View -->
+          <div class="grid grid-cols-1 gap-8 w-full max-w-sm">
+            @for (candidate of candidates(); track candidate.id) {
+            <div class="bg-white rounded-2xl p-6 shadow-lg text-center transform hover:-translate-y-2 transition-transform duration-300">
+              @if (candidate.photoUrl) {
+                <img [src]="candidate.photoUrl" [alt]="candidate.name" class="w-32 h-32 rounded-full mx-auto mb-4 border-4 border-gray-200 object-cover">
+              } @else {
+                <div class="w-32 h-32 rounded-full mx-auto mb-4 border-4 border-gray-200 bg-gray-100 flex items-center justify-center">
+                    <span class="text-5xl font-bold text-gray-400">{{ candidate.name.charAt(0) }}</span>
+                </div>
+              }
+              <h4 class="text-2xl font-bold text-gray-900">{{ candidate.name }}</h4>
+              <p class="text-gray-600 mt-2 mb-4 italic">"{{ candidate.slogan }}"</p>
+              <button (click)="vote(candidate.id)" class="w-full bg-[#ED1C24] text-white font-bold py-3 px-6 rounded-full text-lg hover:bg-red-700 transition-colors duration-300 shadow-lg hover:shadow-xl">
+                Голосовать
+              </button>
+            </div>
+            }
+          </div>
+        } @else {
+          <!-- Results View -->
+          <div class="w-full max-w-2xl bg-white p-8 rounded-2xl shadow-lg">
+            <h3 class="text-2xl font-bold text-center text-gray-900 mb-6">Спасибо, ваш голос учтён!</h3>
+            <div class="space-y-4">
+            @for (candidate of candidates(); track candidate.id) {
+              <div>
+                <div class="flex justify-between items-center mb-1">
+                  <span class="font-bold text-gray-800">{{ candidate.name }}</span>
+                  <span class="text-sm font-semibold text-gray-600">{{ candidate.votes }} {{ candidate.votes === 1 ? 'голос' : (candidate.votes > 1 && candidate.votes < 5 ? 'голоса' : 'голосов') }} ({{ (totalVotes() > 0 ? (candidate.votes / totalVotes() * 100) : 0).toFixed(1) }}%)</span>
+                </div>
+                <div class="w-full bg-gray-200 rounded-full h-4">
+                  <div class="bg-[#ED1C24] h-4 rounded-full transition-all duration-500" [style.width]="(totalVotes() > 0 ? (candidate.votes / totalVotes() * 100) : 0) + '%'"></div>
+                </div>
+              </div>
+            }
+            </div>
+            <p class="text-center mt-6 text-gray-600">Всего проголосовало: {{ totalVotes() }}</p>
+          </div>
+        }
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="bg-gray-900 text-white mt-auto">
+    <div class="container mx-auto py-8 px-4 sm:px-6 lg:px-8 text-center">
+      <p>&copy; {{ currentYear }} {{ schoolName }}. Все права защищены.</p>
+      <p class="text-sm text-gray-400 mt-2">Первичное отделение РДДМ «Движение Первых»</p>
+    </div>
+  </footer>
+</div>
+}
