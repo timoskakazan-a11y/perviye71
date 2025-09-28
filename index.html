@@ -4,16 +4,17 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Движение Первых - Школа 71</title>
+  <link rel="manifest" href="manifest.json">
 
   <!-- PWA & Mobile experience -->
   <meta name="mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="apple-mobile-web-app-title" content="Движение Первых | Школа 71">
-  <meta name="theme-color" content="#ED1C24">
-  <link rel="apple-touch-icon" href="https://avatars.mds.yandex.net/get-yapic/31804/TsgvwgfayuciVxayEMMMGNpnK0-1/orig">
+  <meta name="theme-color" content="#DD3A33">
+  <link rel="apple-touch-icon" href="https://i.postimg.cc/43y7m24S/Group-302.png">
 
-  <link rel="icon" href="https://avatars.mds.yandex.net/get-yapic/31804/TsgvwgfayuciVxayEMMMGNpnK0-1/orig">
+  <link rel="icon" href="https://i.postimg.cc/43y7m24S/Group-302.png">
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -29,6 +30,74 @@
     .ring-brand-red { --tw-ring-color: #ED1C24; }
     .gradient-bg {
       background: linear-gradient(135deg, #fef2f2 0%, #eff6ff 100%);
+    }
+
+    /* Splash Screen Styles */
+    #splash-screen {
+      position: fixed;
+      inset: 0;
+      background-color: #DD3A33;
+      z-index: 9999;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: opacity 0.5s ease-out, visibility 0.5s ease-out;
+      opacity: 1;
+      visibility: visible;
+    }
+    #splash-screen.loaded {
+      opacity: 0;
+      visibility: hidden;
+    }
+    .splash-content {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 2rem;
+    }
+    .splash-logo {
+      width: 120px;
+      height: auto;
+      animation: logo-fade-in 1s ease-out forwards;
+      opacity: 0;
+    }
+    .splash-text-wrapper {
+      overflow: hidden; /* This will clip the text as it slides in */
+    }
+    .splash-text {
+      font-size: 1.75rem; /* 28px */
+      font-weight: 700;
+      color: white;
+      text-align: center;
+      transform: translateY(100%);
+      animation: text-slide-up 0.8s cubic-bezier(0.25, 1, 0.5, 1) 0.5s forwards;
+      white-space: nowrap;
+    }
+    .splash-subtext {
+      font-size: 1.125rem; /* 18px */
+      font-weight: 500;
+      color: white;
+      text-align: center;
+      transform: translateY(100%);
+      animation: text-slide-up 0.8s cubic-bezier(0.25, 1, 0.5, 1) 0.7s forwards;
+      white-space: nowrap;
+    }
+
+    @keyframes logo-fade-in {
+      from {
+        opacity: 0;
+        transform: scale(0.8);
+      }
+      to {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+
+    @keyframes text-slide-up {
+      to {
+        transform: translateY(0);
+      }
     }
   </style>
 <script type="importmap">
@@ -47,8 +116,32 @@
   }
 }
 </script>
+<script>
+    // Redirect to the PWA if it's installed and the user is visiting the site in a browser.
+    // `navigator.standalone` is a non-standard property for older iOS Safari.
+    if (!window.matchMedia('(display-mode: standalone)').matches && !window.navigator.standalone) {
+      // We use `window.location.href` to attempt the redirection.
+      // If the PWA with the registered protocol handler is not installed,
+      // this will gracefully fail in most modern browsers, and the user
+      // will remain on the website.
+      window.location.href = 'web+dvizhenie71://open';
+    }
+</script>
 </head>
 <body class="antialiased">
+  <div id="splash-screen">
+    <div class="splash-content">
+      <img src="https://i.postimg.cc/zBqQCh6D/Vector.png" alt="Логотип Движения Первых" class="splash-logo">
+      <div>
+        <div class="splash-text-wrapper">
+          <p class="splash-text">Движение Первых</p>
+        </div>
+        <div class="splash-text-wrapper">
+          <p class="splash-subtext">МБОУ №71 города Казани</p>
+        </div>
+      </div>
+    </div>
+  </div>
   <app-root></app-root>
 </body>
 </html>

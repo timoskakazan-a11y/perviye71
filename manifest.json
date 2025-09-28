@@ -1,0 +1,27 @@
+{
+  "name": "Движение Первых | Школа 71",
+  "short_name": "Движение 71",
+  "description": "Официальный сайт первичного отделения Российского движения детей и молодёжи «Движение Первых» в МБОУ №71 города Казани",
+  "start_url": ".",
+  "display": "standalone",
+  "background_color": "#DD3A33",
+  "theme_color": "#DD3A33",
+  "icons": [
+    {
+      "src": "https://i.postimg.cc/43y7m24S/Group-302.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "https://i.postimg.cc/43y7m24S/Group-302.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ],
+  "protocol_handlers": [
+    {
+      "protocol": "web+dvizhenie71",
+      "url": "/?pwa_launched&url=%s"
+    }
+  ]
+}

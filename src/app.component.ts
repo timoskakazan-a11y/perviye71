@@ -1,4 +1,4 @@
-import { Component, ChangeDetectionStrategy, signal, computed } from '@angular/core';
+import { Component, ChangeDetectionStrategy, signal, computed, OnInit } from '@angular/core';
 
 interface ValueCard {
   icon: string;
@@ -42,7 +42,7 @@ interface Candidate {
   standalone: true,
   imports: [],
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   schoolName = "МБОУ №71 города Казани";
   teamName = "Чилловые ребятки";
   isMenuOpen = signal(false);
@@ -64,6 +64,22 @@ export class AppComponent {
       localStorage.removeItem('school71-election-votes');
     }
     this.checkVotingStatus();
+  }
+
+  ngOnInit(): void {
+    // Add a delay for the splash screen animations to play and content to load
+    setTimeout(() => {
+      const splashScreen = document.getElementById('splash-screen');
+      if (splashScreen) {
+        splashScreen.classList.add('loaded');
+        // Optional: Remove from DOM after transition for cleanliness
+        setTimeout(() => {
+            if (splashScreen.parentNode) {
+                splashScreen.parentNode.removeChild(splashScreen);
+            }
+        }, 500); // Should match CSS transition duration
+      }
+    }, 2500); // Total splash screen time
   }
 
   checkVotingStatus(): void {
