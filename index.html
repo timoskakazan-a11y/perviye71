@@ -116,17 +116,6 @@
   }
 }
 </script>
-<script>
-    // Redirect to the PWA if it's installed and the user is visiting the site in a browser.
-    // `navigator.standalone` is a non-standard property for older iOS Safari.
-    if (!window.matchMedia('(display-mode: standalone)').matches && !window.navigator.standalone) {
-      // We use `window.location.href` to attempt the redirection.
-      // If the PWA with the registered protocol handler is not installed,
-      // this will gracefully fail in most modern browsers, and the user
-      // will remain on the website.
-      window.location.href = 'web+dvizhenie71://open';
-    }
-</script>
 </head>
 <body class="antialiased">
   <div id="splash-screen">

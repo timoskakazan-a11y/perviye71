@@ -9,7 +9,7 @@ interface ValueCard {
 interface Project {
   imageUrl: string;
   title: string;
-  description: string;
+  description:string;
 }
 
 interface NewsItem {
@@ -47,6 +47,8 @@ export class AppComponent implements OnInit {
   teamName = "Чилловые ребятки";
   isMenuOpen = signal(false);
   currentPage = signal<'main' | 'voting'>('main');
+  isStandalone = signal(false);
+  showOpenInAppModal = signal(false);
 
   // Election signals
   hasVoted = signal(false);
@@ -59,6 +61,9 @@ export class AppComponent implements OnInit {
   });
 
   constructor() {
+    if (typeof window !== 'undefined') {
+        this.isStandalone.set(window.matchMedia('(display-mode: standalone)').matches || (window.navigator as any).standalone);
+    }
     if (typeof localStorage !== 'undefined') {
       localStorage.removeItem('school71-election-voted');
       localStorage.removeItem('school71-election-votes');
@@ -80,6 +85,18 @@ export class AppComponent implements OnInit {
         }, 500); // Should match CSS transition duration
       }
     }, 2500); // Total splash screen time
+
+    // Show "Open in App" modal on mobile browsers after a delay
+    if (typeof window !== 'undefined' && typeof navigator !== 'undefined' && typeof localStorage !== 'undefined') {
+      const isMobile = /Mobi|Android/i.test(navigator.userAgent);
+      const dismissed = localStorage.getItem('school71-dismiss-open-app-modal') === 'true';
+
+      if (!this.isStandalone() && isMobile && !dismissed) {
+        setTimeout(() => {
+          this.showOpenInAppModal.set(true);
+        }, 5000); // 5 second delay
+      }
+    }
   }
 
   checkVotingStatus(): void {
@@ -126,6 +143,17 @@ export class AppComponent implements OnInit {
   showMainPage(): void {
     this.currentPage.set('main');
     window.scrollTo(0, 0); // Scroll to top
+  }
+  
+  openInApp(): void {
+    window.location.href = 'web+dvizhenie71://open';
+  }
+
+  dismissOpenInAppModal(remember: boolean): void {
+    this.showOpenInAppModal.set(false);
+    if (remember && typeof localStorage !== 'undefined') {
+        localStorage.setItem('school71-dismiss-open-app-modal', 'true');
+    }
   }
 
   vote(candidateId: number): void {
