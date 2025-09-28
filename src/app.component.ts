@@ -43,7 +43,7 @@ interface Candidate {
   imports: [],
 })
 export class AppComponent {
-  schoolName = "МБОУ СОШ №71 город Казани";
+  schoolName = "МБОУ №71 города Казани";
   teamName = "Чилловые ребятки";
   isMenuOpen = signal(false);
   currentPage = signal<'main' | 'voting'>('main');
