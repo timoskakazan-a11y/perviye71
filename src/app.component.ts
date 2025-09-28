@@ -51,7 +51,7 @@ export class AppComponent implements OnInit {
   // Election signals
   hasVoted = signal(false);
   candidates = signal<Candidate[]>([
-    { id: 1, name: 'Динара', photoUrl: '', slogan: 'За лучшее будущее!', votes: 0 },
+    { id: 1, name: 'Динара', photoUrl: 'https://picsum.photos/seed/dinara/256/256', slogan: 'За лучшее будущее!', votes: 0 },
   ]);
 
   totalVotes = computed(() => {
